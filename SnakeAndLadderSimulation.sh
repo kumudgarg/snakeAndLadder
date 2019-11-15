@@ -30,9 +30,7 @@ function reachToWinningPosition()
 	if [ $position -lt $DEFAULT_POSITION ]
    then
 		position=$DEFAULT_POSITION
-	elif [ $position -gt $WINNING_POSITION ]
 	then
-		 position=$WINNING_POSITION
 	else
 		echo "be continued"
 	fi
