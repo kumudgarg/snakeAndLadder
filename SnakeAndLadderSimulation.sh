@@ -28,9 +28,12 @@ function playGame()
 function reachToWinningPosition()
 {
 	if [ $position -lt $DEFAULT_POSITION ]
-   then
+   	then
 		position=$DEFAULT_POSITION
-	then
+	elif [ $position -gt $WINNING_POSITION ]
+        then
+                 position=$(( position - dice ))
+
 	else
 		echo "be continued"
 	fi
