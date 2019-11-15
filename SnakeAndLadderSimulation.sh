@@ -28,9 +28,8 @@ function playGame()
 function reachToWinningPosition()
 {
 	if [ $position -lt $DEFAULT_POSITION ]
-   then
-		position=$DEFAULT_POSITION
 	then
+		position=$DEFAULT_POSITION
 	else
 		echo "be continued"
 	fi
