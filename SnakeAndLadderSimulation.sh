@@ -30,7 +30,11 @@ function reachToWinningPosition()
 	if [ $position -lt $DEFAULT_POSITION ]
 	then
 		position=$DEFAULT_POSITION
-	else
+	elif [ $position -gt $WINNING_POSITION ]
+        then
+                position=$(( position - dice ))
+
+	else		
 		echo "be continued"
 	fi
 }
