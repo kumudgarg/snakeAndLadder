@@ -41,14 +41,14 @@ function reachToWinningPosition()
 	then
 		position=$DEFAULT_POSITION
 	elif [ $position -gt $WINNING_POSITION ]
-   then
+	then
       position=$(( position - dice ))
 	fi
 }
 function dice()
 {
 	dice=$(( RANDOM%6 + 1 ))
-   checkOptions=$(( RANDOM%3 ))
+	checkOptions=$(( RANDOM%3 ))
 }
 function wonPlayer()
 {
