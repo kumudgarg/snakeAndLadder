@@ -42,7 +42,7 @@ function reachToWinningPosition()
 		position=$DEFAULT_POSITION
 	elif [ $position -gt $WINNING_POSITION ]
 	then
-      position=$(( position - dice ))
+		position=$(( position - dice ))
 	fi
 }
 function dice()
