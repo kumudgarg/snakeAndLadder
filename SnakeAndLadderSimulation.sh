@@ -8,44 +8,43 @@ SNAKE=2
 LADDER=1
 NO_PLAY=0
 #<-----Global variables-------->
-position=0
-count=0
-counter=0
-playerPosition1=0
-playerPosition2=0
+playersPosition=0
+positionCount=0
+playersTurn=0
 declare -A playerResultInfo
-function playGame()
+function playingGame()
 { 
 	
-	while [ $position -lt $WINNING_POSITION ]
+	while [ $playersPosition -lt $WINNING_POSITION ]
 	do
-		dice
+		rollDice
 		case $checkOptions in
 		$SNAKE)
-			position=$(( position - dice ));;
+			playersPosition=$(( playersPosition - dice ));;
 		$LADDER)
-			position=$(( position + dice ));;
+			playersPosition=$(( playersPosition + dice ));;
 		$NO_PLAY)
-			position=$position;;
+			playersPosition=$playersPosition;;
 		esac
-			swichPlayer
+			switchPlayer
 			reachToWinningPosition
 			wonPlayer
 	done
 }
 function reachToWinningPosition()
 {
-	playerResultInfo[$count]=$position
-	count=$(( count+1 ))
-	if [ $position -lt $DEFAULT_POSITION ]
+	if [ $playersPosition -lt $DEFAULT_POSITION ]
 	then
-		position=$DEFAULT_POSITION
-	elif [ $position -gt $WINNING_POSITION ]
+		playersPosition=$DEFAULT_POSITION
+	elif [ $playersPosition -gt $WINNING_POSITION ]
 	then
-		position=$(( position - dice ))
+		playersPosition=$(( playersPosition - dice ))
 	fi
+	playerResultInfo[$positionCount]=$playersPosition
+  	positionCount=$(( positionCount+1 ))
+
 }
-function dice()
+function rollDice()
 {
 	dice=$(( RANDOM%6 + 1 ))
 	checkOptions=$(( RANDOM%3 ))
@@ -60,17 +59,17 @@ function wonPlayer()
 		echo "player 2 win "
 	fi
 }
-function swichPlayer()
+function switchPlayer()
 {
-  	if [ $(( counter%2 )) -eq 0 ]
+  	if [ $(( playersTurn%2 )) -eq 0 ]
 	then
-		playerPosition1=$position
+		playerPosition1=$playersPosition
 	else
-		playerPosition2=$position
+		playerPosition2=$playersPosition
 	fi 
-		counter=$(( counter + 1 ))
+		playersTurn=$(( playersTurn + 1 ))
 }
-playGame
+playingGame
 echo "welcome to snake and Ladder"
-echo "to won the game dice was rolled $count times "
+echo "to won the game dice was rolled $positionCount times "
 echo "position occupied by the players are ${playerResultInfo[@]}"
